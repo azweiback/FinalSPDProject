@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+
+    <main>
+        <section class="dashboard-section">
+            <h2>Notifications (Last 24 Hours)</h2>
+            {% if notifications %}
+            <ul class="notifications-list">
+                {% for notification in notifications %}
+                <li>
+                    <strong>{{ notification[0] }}</strong>: {{ notification[1] }} reserved by {{ notification[2] }} on {{ notification[3] }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No recent notifications.</p>
+            {% endif %}
+        </section>
+
+        <section class="dashboard-section">
+            <h2>Active and Upcoming Reservations</h2>
+            {% if reservations %}
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Reserved From</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation[0] }}</td>
+                        <td>{{ reservation[1] }}</td>
+                        <td>{{ reservation[2] }}</td>
+                        <td>{{ reservation[3] if reservation[3] else "N/A" }}</td>
+                        <td>{{ reservation[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No active or upcoming reservations.</p>
+            {% endif %}
+        </section>
+    </main>
+</div>
+{% endblock %}

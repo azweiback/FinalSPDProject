@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Events Attending{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Events Attending</h1>
+</header>
+
+<main>
+    {% if events %}
+    <table class="event-table">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Event Date</th>
+                <th>Event Organizer</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event[0] }}</td> <!-- Event ID -->
+                <td>{{ event[1] }}</td> <!-- Title -->
+                <td>{{ event[2] }}</td> <!-- Description -->
+                <td>{{ event[4] }}</td> <!-- Category -->
+                <td>{{ event[5] }}</td> <!-- Event Date -->
+                <td>{{ event[7] }}</td> <!-- Event Organizer -->
+                <td>
+                    {% if event[3] %}
+                        <img src="{{ '/' + event[3] }}" alt="Event Image" width="100"> <!-- Image -->
+                    {% else %}
+                        <span>No Image</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <form action="{{ url_for('cancel_event_attendance', attendance_id=event[6]) }}" method="post">
+                        <button type="submit" class="cancel-btn">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You are not attending any events.</p>
+    {% endif %}
+</main>
+{% endblock %}

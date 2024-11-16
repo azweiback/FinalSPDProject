@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Delete Space{% endblock %}
+
+{% block content %}
+<h2>Are you sure you want to delete this space?</h2>
+<p><strong>Title:</strong> {{ space[0] }}</p>
+<p><strong>Description:</strong> {{ space[1] }}</p>
+
+<form method="POST" action="{{ url_for('confirm_delete_space', space_id=space_id) }}">
+    <button type="submit" class="confirm-btn">Yes, Delete</button>
+    <a href="{{ url_for('my_spaces') }}" class="cancel-btn">Cancel</a>
+</form>
+{% endblock %}

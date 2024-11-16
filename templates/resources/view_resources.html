@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}View Resources{% endblock %}
+
+{% block content %}
+<div class="resources-container">
+    <header>
+        <h1>View Resources</h1>
+        <!-- Search form for user_name, title, description, category, and availability -->
+        <form action="{{ url_for('view_resources') }}" method="get" class="resources-search-form">
+            <input type="text" name="query" placeholder="Search resources..." value="{{ request.args.get('query', '') }}">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </header>
+
+    <main>
+        {% if resources %}
+        <table class="resource-table">
+            <thead>
+                <tr>
+                    <th>Resource ID</th>
+                    <th>User Name</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Availability</th>
+                    <th>Date Posted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resource in resources %}
+                <tr>
+                    <td>{{ resource[0] }}</td> <!-- Resource ID -->
+                    <td>{{ resource[1] }}</td> <!-- User Name -->
+                    <td>
+                        {% if resource[4] %}
+                            <img src="{{ '/' + resource[4] }}" alt="Resource Image" class="resource-image">
+                        {% else %}
+                            <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ resource[2] }}</td> <!-- Title -->
+                    <td>{{ resource[3] }}</td> <!-- Description -->
+                    <td>{{ resource[5] }}</td> <!-- Category -->
+                    <td>
+                        <span class="{{ 'reserved' if resource[6] == 'Reserved' else 'available' }}">
+                            {{ resource[6].capitalize() }}
+                        </span>
+                    </td>
+                    <td>{{ resource[7] }}</td> <!-- Date Posted -->
+                    <td>
+                        <a href="{{ url_for('reserve_resource', resource_id=resource[0]) }}" class="reserve-btn">Reserve</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-resources-message">No resources found from other users.</p>
+        {% endif %}
+    </main>
+    
+</div>
+{% endblock %}

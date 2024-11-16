@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}My Resources{% endblock %}
+
+{% block content %}
+<div class="spaces-container">
+    <header>
+        <h1>My Resources</h1>
+        <a href="{{ url_for('new_resource') }}" class="add-space-btn">Add Resource</a>
+    </header>
+
+    <main>
+        {% if resources %}
+        <table class="space-table">
+            <thead>
+                <tr>
+                    <th>Resource ID</th>
+                    <th>User ID</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Availability</th>
+                    <th>Date Posted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resource in resources %}
+                <tr>
+                    <td>{{ resource[0] }}</td> <!-- Resource ID -->
+                    <td>{{ resource[1] }}</td> <!-- User ID -->
+                    <td>
+                        {% if resource[4] %}
+                        <img src="{{ '/' + resource[4] }}" alt="Resource Image" width="100"> <!-- Adjusted path -->
+                        {% else %}
+                            <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ resource[2] }}</td> <!-- Title -->
+                    <td>{{ resource[3] }}</td> <!-- Description -->
+                    <td>{{ resource[5] }}</td> <!-- Category -->
+                    <td>
+                        <span class="{{ 'reserved' if resource[6] == 'Reserved' else 'available' }}">
+                            {{ resource[6].capitalize() }}
+                        </span>
+                    </td>                    
+                    <td>{{ resource[7] }}</td> <!-- Date Posted -->
+                    <td>
+                        <a href="{{ url_for('edit_resource', resource_id=resource[0]) }}" class="action-btn edit-btn">Edit</a>
+                        <a href="{{ url_for('confirm_delete_resource', resource_id=resource[0]) }}" class="action-btn delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-spaces-message">No resources found. Add a new resource to get started.</p>
+        {% endif %}
+    </main>
+</div>    
+{% endblock %}

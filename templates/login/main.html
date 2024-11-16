@@ -1,0 +1,24 @@
+{% extends "login/login_base.html" %}
+
+{% block title %}Sign Up or Log In{% endblock %}
+
+{% block content %}
+<h1 class="main-title">Neighborhood Exchange</h1>
+<h2 class="page-title">Sign Up or Log In</h2>
+<form method="POST" action="/save-email-password" class="form">
+    <div class="form-group">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+               title="Please enter a valid email address." class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="password" class="form-label">Create a password</label>
+        <input type="password" id="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" 
+               title="Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character." 
+               class="form-input">
+        <span class="password-eye">&#128065;</span>
+    </div>
+    <button type="submit" class="submit-btn">Continue</button>
+</form>
+<p class="info-text">Have an account? <a href="/login" class="link">Log in</a></p>
+{% endblock %}

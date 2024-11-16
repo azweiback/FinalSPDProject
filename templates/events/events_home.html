@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Events</h1>
+</header>
+<main>
+    <div class="options-container">
+        <a href="{{ url_for('view_events') }}" class="option-box">
+            <span class="option-title">View Events</span>
+            <p class="description">Browse all upcoming events in the community and learn more about each one.</p>
+        </a>
+        <a href="{{ url_for('my_events') }}" class="option-box">
+            <span class="option-title">My Events</span>
+            <p class="description">Manage the events you have organized, edit details, and update information.</p>
+        </a>
+        <a href="{{ url_for('events_attending') }}" class="option-box">
+            <span class="option-title">Attending Events</span>
+            <p class="description">View and manage events that you are planning to attend.</p>
+        </a>
+    </div>
+</main>
+{% endblock %}

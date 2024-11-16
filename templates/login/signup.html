@@ -1,0 +1,22 @@
+{% extends "login/login_base.html" %}
+
+{% block title %}Complete Registration{% endblock %}
+
+{% block content %}
+<h2 class="page-title">Complete Registration</h2>
+<form method="POST" action="/process-signup" enctype="multipart/form-data" class="form">
+    <div class="form-group">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" name="name" required class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" name="address" required class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="profile_photo" class="form-label">Profile Photo</label>
+        <input type="file" id="profile_photo" name="profile_photo" accept="image/*" required class="form-input">
+    </div>
+    <button type="submit" class="submit-btn">Register</button>
+</form>
+{% endblock %}

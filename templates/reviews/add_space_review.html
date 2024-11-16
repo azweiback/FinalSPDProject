@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Add Space Review{% endblock %}
+
+{% block content %}
+<h2 class="space-review-title">Add Space Review</h2>
+<div class="space-review-form-container">
+    <form method="POST" action="{{ url_for('add_space_review') }}" class="space-review-form">
+        <div class="space-review-group">
+            <label for="space_id">Select Space to Review</label>
+            <select id="space_id" name="space_id" required>
+                {% for space in spaces %}
+                    <option value="{{ space[0] }}">{{ space[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="space-review-group">
+            <label for="rating">Rating</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+        </div>
+
+        <div class="space-review-group">
+            <label for="comment">Comment</label>
+            <textarea id="comment" name="comment" required></textarea>
+        </div>
+
+        <button type="submit" class="space-review-submit-btn">Submit Review</button>
+    </form>
+</div>
+{% endblock %}

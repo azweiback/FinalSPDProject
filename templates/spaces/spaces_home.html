@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Spaces{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Spaces</h1>
+</header>
+<main>
+    <div class="options-container">
+        <a href="{{ url_for('view_spaces') }}" class="option-box">
+            <span class="option-title">View Spaces</span>
+            <p class="description">Browse available spaces in the community for meetings, events, or personal use.</p>
+        </a>
+        <a href="{{ url_for('my_spaces') }}" class="option-box">
+            <span class="option-title">My Spaces</span>
+            <p class="description">Manage the spaces you have listed, update details, and adjust availability for others to reserve.</p>
+        </a>
+        <a href="{{ url_for('reserved_spaces') }}" class="option-box">
+            <span class="option-title">Reserved Spaces</span>
+            <p class="description">View and manage spaces you have reserved for upcoming use.</p>
+        </a>
+    </div>
+</main>
+{% endblock %}

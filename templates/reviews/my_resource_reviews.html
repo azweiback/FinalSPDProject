@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}My Resource Reviews{% endblock %}
+
+{% block content %}
+<h2 class="my-resource-reviews-title">My Resource Reviews</h2>
+<div class="my-resource-reviews-container">
+    {% if resource_reviews %}
+    <table class="my-resource-reviews-table">
+        <thead>
+            <tr>
+                <th class="my-resource-reviews-header">Reviewer</th>
+                <th class="my-resource-reviews-header">Rating</th>
+                <th class="my-resource-reviews-header">Comment</th>
+                <th class="my-resource-reviews-header">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in resource_reviews %}
+            <tr>
+                <td class="my-resource-reviews-data">{{ review[0] }}</td>
+                <td class="my-resource-reviews-data">{{ review[1] }}</td>
+                <td class="my-resource-reviews-data">{{ review[2] }}</td>
+                <td class="my-resource-reviews-data">{{ review[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No resource reviews found.</p>
+    {% endif %}
+</div>
+{% endblock %}

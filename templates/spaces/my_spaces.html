@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}My Spaces{% endblock %}
+
+{% block content %}
+<div class="spaces-container">
+    <header>
+        <h1>My Spaces</h1>
+        <a href="{{ url_for('new_space') }}" class="add-space-btn">Add Space</a>
+    </header>
+
+    <main>
+        {% if spaces %}
+        <table class="space-table">
+            <thead>
+                <tr>
+                    <th>Space ID</th>
+                    <th>User ID</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Availability</th>
+                    <th>Date Posted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for space in spaces %}
+                <tr>
+                    <td>{{ space[0] }}</td> <!-- Space ID -->
+                    <td>{{ space[1] }}</td> <!-- User ID -->
+                    <td>
+                        {% if space[4] %}
+                            <img src="{{ '/' + space[4] }}" alt="Space Image"> <!-- Adjusted path -->
+                        {% else %}
+                            <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ space[2] }}</td> <!-- Title -->
+                    <td>{{ space[3] }}</td> <!-- Description -->
+                    <td>{{ space[5] }}</td> <!-- Category -->
+                    <td>
+                        <span class="{{ 'reserved' if space[6] == 'Reserved' else 'available' }}">
+                            {{ space[6].capitalize() }}
+                        </span>
+                    </td> 
+                    <td>{{ space[7] }}</td> <!-- Date Posted -->
+                    <td>
+                        <a href="{{ url_for('edit_space', space_id=space[0]) }}" class="action-btn edit-btn">Edit</a>
+                        <a href="{{ url_for('confirm_delete_space', space_id=space[0]) }}" class="action-btn delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-spaces-message">No spaces found. Add a new space to get started.</p>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}My Reviews{% endblock %}
+
+{% block content %}
+<h2>My Reviews</h2>
+<div class="options-container">
+    <a href="{{ url_for('my_resource_reviews') }}" class="option-box">
+        <span class="option-title">My Resource Reviews</span>
+        <p class="description">View your reviews for resources.</p>
+    </a>
+    <a href="{{ url_for('my_space_reviews') }}" class="option-box">
+        <span class="option-title">My Space Reviews</span>
+        <p class="description">View your reviews for spaces.</p>
+    </a>
+    <a href="{{ url_for('my_user_reviews') }}" class="option-box">
+        <span class="option-title">My User Reviews</span>
+        <p class="description">View your reviews for other users.</p>
+    </a>
+</div>
+{% endblock %}

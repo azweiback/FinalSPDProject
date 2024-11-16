@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Reviews</h1>
+</header>
+<main>
+    <div class="options-container">
+        <a href="{{ url_for('add_review_options') }}" class="option-box">
+            <span class="option-title">Add Review</span>
+            <p class="description">Leave a review for a community member or event to share your experience.</p>
+        </a>
+        <a href="{{ url_for('my_review_options') }}" class="option-box">
+            <span class="option-title">My Reviews</span>
+            <p class="description">View and manage the reviews you have submitted.</p>
+        </a>
+        <a href="{{ url_for('view_all_reviews') }}" class="option-box">
+            <span class="option-title">View All Reviews</span>
+            <p class="description">View every review from users, resources, and spaces in one table.</p>
+        </a>
+    </div>
+</main>
+{% endblock %}

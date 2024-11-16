@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}View Events{% endblock %}
+
+{% block content %}
+<header>
+    <h1>View Events</h1>
+   <!-- Search form for user_name, title, description, category, and availability -->
+   <form action="{{ url_for('view_resources') }}" method="get" class="resources-search-form">
+    <input type="text" name="query" placeholder="Search resources..." value="{{ request.args.get('query', '') }}">
+    <button type="submit" class="search-btn">Search</button>
+</form>
+</header>
+
+<main>
+    {% if events %}
+    <table class="event-table">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>User Name</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Event Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event[0] }}</td> <!-- Event ID -->
+                <td>{{ event[1] }}</td> <!-- User Name -->
+                <td>
+                    {% if event[4] %}
+                        <img src="{{ '/' + event[4] }}" alt="Event Image" width="100"> <!-- Adjusted path for image -->
+                    {% else %}
+                        <span>No Image</span>
+                    {% endif %}
+                </td>
+                <td>{{ event[2] }}</td> <!-- Title -->
+                <td>{{ event[3] }}</td> <!-- Description -->
+                <td>{{ event[5] }}</td> <!-- Category -->
+                <td>{{ event[6] }}</td> <!-- Event Date -->
+                <td>
+                    {% if event[7] %} <!-- event[7] is a flag or value indicating attendance -->
+                        <button type="button" class="attend-btn" disabled>Attending</button>
+                    {% else %}
+                        <form action="{{ url_for('attend_event', event_id=event[0]) }}" method="post">
+                            <button type="submit" class="attend-btn">Attend</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No events found from other users.</p>
+    {% endif %}
+</main>
+{% endblock %}

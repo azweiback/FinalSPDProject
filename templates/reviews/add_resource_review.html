@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Add Resource Review{% endblock %}
+
+{% block content %}
+<h2 class="resource-review-title">Add Resource Review</h2>
+<div class="resource-review-form-container">
+    <form method="POST" action="{{ url_for('add_resource_review') }}" class="resource-review-form">
+        <div class="resource-review-group">
+            <label for="resource_id">Select Resource to Review</label>
+            <select id="resource_id" name="resource_id" required>
+                {% for resource in resources %}
+                    <option value="{{ resource[0] }}">{{ resource[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="resource-review-group">
+            <label for="rating">Rating</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+        </div>
+
+        <div class="resource-review-group">
+            <label for="comment">Comment</label>
+            <textarea id="comment" name="comment" required></textarea>
+        </div>
+
+        <button type="submit" class="resource-review-submit-btn">Submit Review</button>
+    </form>
+</div>
+{% endblock %}

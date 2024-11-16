@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Smart Neighborhood Exchange{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="navbar-header">
+        <h1 class="navbar-header">Smart Neighborhood Exchange</h1>
+        <nav class="navbar">
+            <a href="{{ url_for('homepage') }}" class="navbar-link">Home</a>
+            <a href="{{ url_for('dashboard') }}" class="navbar-link">Dashboard</a>
+            <a href="{{ url_for('resources_home') }}" class="navbar-link">Resources</a>
+            <a href="{{ url_for('spaces_home') }}" class="navbar-link">Spaces</a>
+            <a href="{{ url_for('events_home') }}" class="navbar-link">Events</a>
+            <a href="{{ url_for('reviews_home') }}" class="navbar-link">Reviews</a>
+            <a href="{{ url_for('inbox') }}" class="navbar-link">Inbox</a>
+            <a href="{{ url_for('profile') }}" class="navbar-link">Profile</a>
+            <a href="{{ url_for('logout') }}" class="navbar-link">Logout</a>
+        </nav>
+    </header>
+    <main class="main-container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Smart Neighborhood Exchange. All rights reserved.</p>
+    </footer>
+</body>
+</html>

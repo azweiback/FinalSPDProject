@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}My Events{% endblock %}
+
+{% block content %}
+<div class="spaces-container">
+<header>
+    <h1>My Events</h1>
+    <a href="{{ url_for('new_event') }}" class="add-space-btn">Add Event</a>
+</header>
+
+<main>
+    {% if events %}
+    <table class="event-table">
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>User ID</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Event Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event[0] }}</td> <!-- Event ID -->
+                <td>{{ event[1] }}</td> <!-- User ID -->
+                <td>
+                    {% if event[4] %}
+                        <img src="{{ '/' + event[4] }}" alt="Event Image" width="100"> <!-- Adjusted path -->
+                    {% else %}
+                        <span>No Image</span>
+                    {% endif %}
+                </td>
+                <td>{{ event[2] }}</td> <!-- Title -->
+                <td>{{ event[3] }}</td> <!-- Description -->
+                <td>{{ event[5] }}</td> <!-- Category -->
+                <td>{{ event[6] }}</td> <!-- Event Date -->
+                <td>
+                    <a href="{{ url_for('edit_event', event_id=event[0]) }}" class="action-btn edit-btn">Edit</a>
+                    <a href="{{ url_for('confirm_delete_event', event_id=event[0]) }}" class="action-btn delete-btn">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No upcoming events found. Add a new event to get started.</p>
+    {% endif %}
+</main>
+</div>
+{% endblock %}

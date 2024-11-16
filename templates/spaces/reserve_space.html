@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Reserve Space{% endblock %}
+
+{% block content %}
+<div class="space-reserve-container">
+    <header>
+        <h1>Reserve Space</h1>
+    </header>
+
+    <main>
+        <form id="reservationForm" action="{{ url_for('reserve_space', space_id=space_id) }}" method="post" class="space-reserve-form">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+
+            <button type="submit" class="space-reserve-btn">Confirm Reservation</button>
+
+            {% if error_message %}
+                <p class="space-error-message">{{ error_message }}</p>
+            {% endif %}
+        </form>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Resources{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Resources</h1>
+</header>
+<main>
+    <div class="options-container">
+        <a href="{{ url_for('view_resources') }}" class="option-box">
+            <span class="option-title">View Resources</span>
+            <p class="description">Browse all available resources in the community and learn more about each one.</p>
+        </a>
+        <a href="{{ url_for('my_resources') }}" class="option-box">
+            <span class="option-title">My Resources</span>
+            <p class="description">Manage the resources you have shared with the community, edit details, and update availability.</p>
+        </a>
+        <a href="{{ url_for('reserved_resources') }}" class="option-box">
+            <span class="option-title">Reserved Resources</span>
+            <p class="description">View and manage resources that you have reserved for future use.</p>
+        </a>
+    </div>
+</main>
+{% endblock %}

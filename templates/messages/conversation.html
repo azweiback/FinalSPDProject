@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Conversation{% endblock %}
+{% block content %}
+<h2 class="conversation-title">Conversation with {{ other_user_name }}</h2> <!-- Display other user's name in the title -->
+
+<div class="conversation-container">
+    <div class="message-list">
+        {% for message in messages %}
+        <div class="message-container {{ 'sent' if message[0] == user_id else 'received' }}">
+            <p class="sender-name">
+                {% if message[0] == user_id %}
+                    You
+                {% else %}
+                    {{ other_user_name }}
+                {% endif %}
+            </p>
+            <p class="message-content">{{ message[1] }}</p>
+            <span class="timestamp">{{ message[2] }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="message-form-container">
+    <form method="POST" action="{{ url_for('conversation', other_user_id=other_user_id) }}" class="message-form">
+        <textarea name="message" rows="4" required placeholder="Type your message..."></textarea>
+        <button type="submit" class="send-btn">Send Message</button>
+    </form>
+</div>
+{% endblock %}

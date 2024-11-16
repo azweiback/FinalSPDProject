@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}My User Reviews{% endblock %}
+
+{% block content %}
+<h2 class="my-user-reviews-title">My User Reviews</h2>
+<div class="my-user-reviews-container">
+    {% if reviews %}
+    <table class="my-user-reviews-table">
+        <thead>
+            <tr>
+                <th class="my-user-reviews-header">Reviewer</th>
+                <th class="my-user-reviews-header">Rating</th>
+                <th class="my-user-reviews-header">Comment</th>
+                <th class="my-user-reviews-header">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td class="my-user-reviews-data">{{ review[0] }}</td>
+                <td class="my-user-reviews-data">{{ review[1] }}</td>
+                <td class="my-user-reviews-data">{{ review[2] }}</td>
+                <td class="my-user-reviews-data">{{ review[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No user reviews found.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Delete Event{% endblock %}
+
+{% block content %}
+<h2>Are you sure you want to delete this event?</h2>
+<p><strong>Title:</strong> {{ event[0] }}</p>
+<p><strong>Description:</strong> {{ event[1] }}</p>
+
+<form method="POST" action="{{ url_for('confirm_delete_event', event_id=event_id) }}">
+    <button type="submit" class="confirm-btn">Yes, Delete</button>
+    <a href="{{ url_for('my_events') }}" class="cancel-btn">Cancel</a>
+</form>
+{% endblock %}

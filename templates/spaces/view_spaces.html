@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}View Spaces{% endblock %}
+
+{% block content %}
+<div class="spaces-container">
+    <header>
+        <h1>View Spaces</h1>
+        <!-- Search form for user_name, title, description, category, and availability -->
+        <form action="{{ url_for('view_spaces') }}" method="get" class="resources-search-form">
+            <input type="text" name="query" placeholder="Search spaces..." value="{{ request.args.get('query', '') }}">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </header>
+
+    <main>
+        {% if spaces %}
+        <table class="spaces-table">
+            <thead>
+                <tr>
+                    <th>Space ID</th>
+                    <th>User Name</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Availability</th>
+                    <th>Date Posted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for space in spaces %}
+                <tr>
+                    <td>{{ space[0] }}</td> <!-- Space ID -->
+                    <td>{{ space[1] }}</td> <!-- User Name -->
+                    <td>
+                        {% if space[4] %}
+                            <img src="{{ '/' + space[4] }}" alt="Space Image" class="space-image">
+                        {% else %}
+                            <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ space[2] }}</td> <!-- Title -->
+                    <td>{{ space[3] }}</td> <!-- Description -->
+                    <td>{{ space[5] }}</td> <!-- Category -->
+                    <td>
+                        <span class="{{ 'reserved' if space[6] == 'Reserved' else 'available' }}">
+                            {{ space[6].capitalize() }}
+                        </span>
+                    </td>
+                    <td>{{ space[7] }}</td> <!-- Date Posted -->
+                    <td>
+                        <a href="{{ url_for('reserve_space', space_id=space[0]) }}" class="reserve-btn">
+                            Reserve
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-spaces-message">No spaces found from other users.</p>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}

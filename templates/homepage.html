@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<div class="homepage-container">
+    <header>
+        <h1>Welcome to the Smart Neighborhood Exchange</h1>
+    </header>
+
+    <main>
+        <!-- Newest Listings Section -->
+        <section class="homepage-section">
+            <h2>Newest Listings</h2>
+            <table class="homepage-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if newest_resource %}
+                    <tr>
+                        <td>{{ newest_resource[3] }}</td>
+                        <td>{{ newest_resource[4] }}</td>
+                        <td>Resource</td>
+                        <td>{{ newest_resource[1] }}</td>
+                        <td>{{ newest_resource[2] }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if newest_space %}
+                    <tr>
+                        <td>{{ newest_space[3] }}</td>
+                        <td>{{ newest_space[4] }}</td>
+                        <td>Space</td>
+                        <td>{{ newest_space[1] }}</td>
+                        <td>{{ newest_space[2] }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if newest_event %}
+                    <tr>
+                        <td>{{ newest_event[3] }}</td>
+                        <td>{{ newest_event[4] }}</td>
+                        <td>Event</td>
+                        <td>{{ newest_event[1] }}</td>
+                        <td>{{ newest_event[2] }}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Top-Rated Users Section -->
+        <section class="homepage-section">
+            <h2>Top-Rated Users</h2>
+            <table class="homepage-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Average Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in top_rated_users %}
+                    <tr>
+                        <td>{{ user[0] }}</td>
+                        <td>{{ user[1] }}</td>
+                        <td>{{ '%.2f'|format(user[2]) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+{% endblock %}

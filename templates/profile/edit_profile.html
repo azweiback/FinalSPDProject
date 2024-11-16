@@ -1,0 +1,36 @@
+<!-- edit_profile.html -->
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<header class="profile-header">
+    <h1>Edit Profile</h1>
+</header>
+
+<main class="profile-main">
+    <form method="POST" action="{{ url_for('edit_profile') }}" enctype="multipart/form-data" class="edit-profile-form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="{{ user['name'] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ user['email'] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" value="{{ user['location'] }}">
+        </div>
+
+        <div class="form-group">
+            <label for="profile_image">Profile Image</label>
+            <input type="file" id="profile_image" name="profile_image" accept="image/*">
+        </div>
+
+        <button type="submit" class="button save-btn">Save Changes</button>
+    </form>
+</main>
+{% endblock %}

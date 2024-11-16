@@ -1,0 +1,18 @@
+{% extends "login/login_base.html" %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<h2 class="page-title">Log In</h2>
+<form method="POST" action="/process-login" class="form">
+    <div class="form-group">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" id="email" name="email" required class="form-input">
+    </div>
+    <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" name="password" required class="form-input">
+    </div>
+    <button type="submit" class="submit-btn">Log In</button>
+</form>
+{% endblock %}

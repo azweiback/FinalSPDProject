@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}My Space Reviews{% endblock %}
+
+{% block content %}
+<h2 class="my-space-reviews-title">My Space Reviews</h2>
+<div class="my-space-reviews-container">
+    {% if space_reviews %}
+    <table class="my-space-reviews-table">
+        <thead>
+            <tr>
+                <th class="my-space-reviews-header">Reviewer</th>
+                <th class="my-space-reviews-header">Rating</th>
+                <th class="my-space-reviews-header">Comment</th>
+                <th class="my-space-reviews-header">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in space_reviews %}
+            <tr>
+                <td class="my-space-reviews-data">{{ review[0] }}</td>
+                <td class="my-space-reviews-data">{{ review[1] }}</td>
+                <td class="my-space-reviews-data">{{ review[2] }}</td>
+                <td class="my-space-reviews-data">{{ review[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No space reviews found.</p>
+    {% endif %}
+</div>
+{% endblock %}

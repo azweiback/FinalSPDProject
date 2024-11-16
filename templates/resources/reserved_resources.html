@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Reserved Resources{% endblock %}
+
+{% block content %}
+<header class="reserved-resources-header">
+    <h1>Reserved Resources</h1>
+</header>
+
+<main class="reserved-resources-content">
+    {% if reservations %}
+    <table class="reserved-resources-table">
+        <thead>
+            <tr>
+                <th>Reservation ID</th>
+                <th>Title</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reserved From</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr class="reserved-resources-row">
+                <td>{{ reservation[0] }}</td> <!-- Reservation ID -->
+                <td>{{ reservation[1] }}</td> <!-- Title -->
+                <td>{{ reservation[2] }}</td> <!-- Start Date -->
+                <td>{{ reservation[3] }}</td> <!-- End Date -->
+                <td>{{ reservation[4] }}</td> <!-- Reserved From -->
+                <td>
+                    <form action="{{ url_for('cancel_reservation', reservation_id=reservation[0]) }}" method="POST" class="cancel-reservation-form">
+                        <button type="submit" class="reserved-resources-cancel-btn">Cancel Reservation</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="reserved-resources-no-reservations">No active reservations.</p>
+    {% endif %}
+</main>
+{% endblock %}

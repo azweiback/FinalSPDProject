@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Add Review{% endblock %}
+
+{% block content %}
+<h2>Add Review</h2>
+<div class="options-container">
+    <a href="{{ url_for('add_resource_review') }}" class="option-box">
+        <span class="option-title">Add Resource Review</span>
+        <p class="description">Leave a review for a resource you have used.</p>
+    </a>
+    <a href="{{ url_for('add_space_review') }}" class="option-box">
+        <span class="option-title">Add Space Review</span>
+        <p class="description">Leave a review for a space you have visited.</p>
+    </a>
+    <a href="{{ url_for('add_user_review') }}" class="option-box">
+        <span class="option-title">Add User Review</span>
+        <p class="description">Leave a review for a user in the community.</p>
+    </a>
+</div>
+{% endblock %}

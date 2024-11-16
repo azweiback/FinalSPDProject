@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}View All Reviews{% endblock %}
+
+{% block content %}
+<h2 class="view-all-reviews-title">All Reviews</h2>
+
+<!-- Search Bar Form -->
+<div class="view-all-reviews-search-container">
+    <form action="{{ url_for('view_all_reviews') }}" method="get" class="view-all-reviews-search-form">
+        <input type="text" name="query" placeholder="Search reviews..." value="{{ search_query }}" class="view-all-reviews-search-input">
+        <button type="submit" class="view-all-reviews-search-btn">Search</button>
+    </form>
+</div>
+
+<div class="view-all-reviews-container">
+    {% if all_reviews %}
+    <table class="view-all-reviews-table">
+        <thead>
+            <tr>
+                <th class="view-all-reviews-header">Type</th>
+                <th class="view-all-reviews-header">Name</th>
+                <th class="view-all-reviews-header">Rating</th>
+                <th class="view-all-reviews-header">Comment</th>
+                <th class="view-all-reviews-header">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in all_reviews %}
+            <tr>
+                <td class="view-all-reviews-data">{{ review[0] }}</td>
+                <td class="view-all-reviews-data">{{ review[1] }}</td>
+                <td class="view-all-reviews-data">{{ review[2] }}</td>
+                <td class="view-all-reviews-data">{{ review[3] }}</td>
+                <td class="view-all-reviews-data">{{ review[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No reviews found.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Event{% endblock %}
+
+{% block content %}
+<h2>Add New Event</h2>
+<form method="POST" action="{{ url_for('new_event') }}" class="event-form" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category" required>
+    </div>
+
+    <div class="form-group">
+        <label for="date">Event Date</label>
+        <input type="date" id="date" name="date" required>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+    </div>
+
+    <button type="submit" class="submit-btn">Add Event</button>
+</form>
+{% endblock %}

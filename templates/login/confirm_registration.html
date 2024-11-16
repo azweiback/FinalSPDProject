@@ -1,0 +1,11 @@
+{% extends "login/login_base.html" %}
+
+{% block title %}Confirm Registration{% endblock %}
+
+{% block content %}
+<h2 class="page-title">Confirm Registration</h2>
+<p class="info-text">Thank you for registering! Please agree to our <a href="#" class="policy-link">Privacy Policy</a> to complete your registration.</p>
+<form method="POST" action="{{ url_for('confirm_registration') }}" class="form">
+    <button type="submit" class="submit-btn">I Agree</button>
+</form>
+{% endblock %}
